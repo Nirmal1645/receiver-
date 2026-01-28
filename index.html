@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Receiver</h2>
+<h3 id="output">Waiting...</h3>
+
+<script>
+setInterval(() => {
+  document.getElementById("output").innerText =
+    localStorage.getItem("sharedData") || "No data yet";
+}, 500);
+</script>
+
+</body>
+</html>
+
+
