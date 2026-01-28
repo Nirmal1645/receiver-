@@ -1,14 +1,25 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
-app.post("/receive", (req, res) => {
-  console.log("Received data:", req.body);
+// store latest data
+let latestData = "No data yet";
 
+// receive data
+app.post("/receive", (req, res) => {
+  latestData = req.body.name;
   res.send("OK");
 });
 
-app.listen(3000, () => {
-  console.log("Receiver running");
+// send data to frontend
+app.get("/data", (req, res) => {
+  res.json({ name: latestData });
 });
+
+app.listen(3000, () => {
+  console.log("Receiver running on port 3000");
+});
+
